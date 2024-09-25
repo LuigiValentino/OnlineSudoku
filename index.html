@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SudokuOnline</title>
+    <link rel="shortcut icon" href="/icono.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #e9ffee;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #instructions {
+            margin-bottom: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #timer {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        #difficulty-controls {
+            margin-bottom: 20px;
+        }
+
+        #sudoku-board {
+            display: grid;
+            grid-template-columns: repeat(9, 50px);
+            grid-template-rows: repeat(9, 50px);
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            font-size: 1.2em;
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .cell input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        #controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #4CAF50; 
+            color: white;
+            border: 2px solid #4CAF50; 
+            border-radius: 5px; 
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+        }
+
+        button:hover {
+            background-color: #37803a;
+            border-color: #45a049; 
+        }
+
+
+        input[type="text"]:invalid {
+            border: 2px solid red;
+        }
+
+        input[type="text"]:valid {
+            border: 1px solid #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>SudokuOnline</h1>
+    <div id="instructions">
+        <p>Completa la cuadrícula de Sudoku de manera que cada fila, cada columna y cada una de las 9 subcuadrículas de 3x3 contengan todos los dígitos del 1 al 9.</p>
+    </div>
+    <div id="timer">Tiempo: <span id="time">00:00</span></div>
+    <div id="difficulty-controls">
+        <label for="difficulty">Dificultad:</label>
+        <select id="difficulty" onchange="changeDifficulty()">
+            <option value="easy">Fácil</option>
+            <option value="medium" selected>Medio</option>
+            <option value="hard">Difícil</option>
+        </select>
+    </div>
+    <div id="sudoku-board"></div>
+    <div id="controls">
+        <button onclick="checkSolution()"><i class="fas fa-check"></i> Comprobar Solución</button>
+        <button onclick="solveSudoku()"><i class="fas fa-magic"></i> Resolver Sudoku</button>
+        <button onclick="giveHint()"><i class="fas fa-lightbulb"></i> Pista</button>
+        <button onclick="resetGame()"><i class="fas fa-redo-alt"></i> Reiniciar</button>
+    </div>   
+    <script src="script.js"></script>
+</body>
+</html>
